@@ -20,20 +20,12 @@ function createApp(database) {
     const type = req.query.type;
     const baseCost = database.findBasePriceByType(type).cost;
     const date = parseDate(req.query.date);
-    const temporalDate = parseTemporalDate(req.query.date);
-    const cost = calculateCost(age, type, temporalDate, baseCost);
-    // console.log({ date, age, cost, temporalDate });
+    const cost = calculateCost(age, type, date, baseCost);
     res.json({ cost });
   });
 
   function parseDate(dateString) {
     if (dateString) {
-      return new Date(dateString);
-    }
-  }
-  function parseTemporalDate(dateString) {
-    if (dateString) {
-      // console.log({ Temporal: Temporal.PlainDate.from(dateString).toString() });
       return Temporal.PlainDate.from(dateString);
     }
   }
@@ -87,7 +79,6 @@ function createApp(database) {
 
   function isMonday(date) {
     const isMonday = date.toZonedDateTime("+00:00").dayOfWeek == 1;
-    console.log({ isMonday: date.toZonedDateTime("+00:00").dayOfWeek });
     return isMonday;
   }
 
