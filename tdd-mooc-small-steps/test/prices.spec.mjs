@@ -6,8 +6,8 @@ import * as jsPrices from "../src/prices.mjs";
 import * as tsPrices from "../src/prices_typed";
 
 describe.each([
-  { variant: "JavaScript", createApp: jsPrices.createApp },
-  // { variant: "TypeScript", createApp: tsPrices.createApp },
+  // { variant: "JavaScript", createApp: jsPrices.createApp },
+  { variant: "TypeScript", createApp: tsPrices.createApp },
 ])(
   "prices ($variant)",
   ({ createApp }) => {
