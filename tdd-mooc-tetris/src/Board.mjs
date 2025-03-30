@@ -9,6 +9,9 @@ export class Board {
     this.shape = "...\n...\n...\n";
   }
   drop() {
+    if (this.shape.indexOf("X") > -1) {
+      throw "already falling";
+    }
     this.shape = ".X.\n...\n...\n";
   }
 
