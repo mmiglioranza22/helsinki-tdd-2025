@@ -21,8 +21,8 @@ function createApp(database) {
     const baseCost = database.findBasePriceByType(type).cost;
     const date = parseDate(req.query.date);
     const temporalDate = parseTemporalDate(req.query.date);
-    const cost = calculateCost(age, type, date, baseCost);
-    console.log({ date, age, cost, temporalDate });
+    const cost = calculateCost(age, type, temporalDate, baseCost);
+    // console.log({ date, age, cost, temporalDate });
     res.json({ cost });
   });
 
@@ -86,8 +86,8 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    const isMonday = date.dayOfWeek == 1;
-    console.log({ isMonday });
+    const isMonday = date.toZonedDateTime("+00:00").dayOfWeek == 1;
+    console.log({ isMonday: date.toZonedDateTime("+00:00").dayOfWeek });
     return isMonday;
   }
 

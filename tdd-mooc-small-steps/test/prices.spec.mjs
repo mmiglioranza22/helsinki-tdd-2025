@@ -69,7 +69,7 @@ describe.each([
     ].forEach(({ age, expectedCost, date }) => {
       it("works for monday deals", async () => {
         const { body } = await request(app).get(`/prices?type=1jour&age=${age}&date=${date}`);
-        // console.log({ body, expectedCost });
+
         expect(body.cost).equal(expectedCost);
       });
     });

@@ -8,8 +8,9 @@ import { Temporal } from "@js-temporal/polyfill";
 
 describe("Date conversion", () => {
   it("String -> PlainDate", () => {
-    // console.log({ date: Temporal.PlainDate.from("2000-12-31").toLocaleString() });
-    // console.log({ date: Temporal.PlainDate.from("2000-12-31").dayOfWeek });
+    console.log({ date: Temporal.PlainDate.from("2000-12-31").toLocaleString() });
+    console.log({ date: Temporal.PlainDate.from("2000-12-31").toZonedDateTime("+00:00").dayOfWeek });
+    // console.log({ date: Object.keys(Temporal.ZonedDateTime.from("2000-12-31")) });
     expect(Temporal.PlainDate.from("2000-12-31").equals(new Temporal.PlainDate(2000, 12, 31))).to.be.true;
   });
 
