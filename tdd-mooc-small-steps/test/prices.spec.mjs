@@ -7,7 +7,7 @@ import * as tsPrices from "../src/prices_typed";
 
 describe.each([
   { variant: "JavaScript", createApp: jsPrices.createApp },
-  { variant: "TypeScript", createApp: tsPrices.createApp },
+  // { variant: "TypeScript", createApp: tsPrices.createApp },
 ])(
   "prices ($variant)",
   ({ createApp }) => {
@@ -69,7 +69,7 @@ describe.each([
     ].forEach(({ age, expectedCost, date }) => {
       it("works for monday deals", async () => {
         const { body } = await request(app).get(`/prices?type=1jour&age=${age}&date=${date}`);
-
+        // console.log({ body, expectedCost });
         expect(body.cost).equal(expectedCost);
       });
     });

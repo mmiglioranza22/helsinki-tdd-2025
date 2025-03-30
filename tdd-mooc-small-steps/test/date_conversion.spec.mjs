@@ -8,6 +8,8 @@ import { Temporal } from "@js-temporal/polyfill";
 
 describe("Date conversion", () => {
   it("String -> PlainDate", () => {
+    // console.log({ date: Temporal.PlainDate.from("2000-12-31").toLocaleString() });
+    // console.log({ date: Temporal.PlainDate.from("2000-12-31").toString() });
     expect(Temporal.PlainDate.from("2000-12-31").equals(new Temporal.PlainDate(2000, 12, 31))).to.be.true;
   });
 
