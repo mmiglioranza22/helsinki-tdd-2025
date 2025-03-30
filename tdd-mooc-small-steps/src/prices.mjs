@@ -1,3 +1,4 @@
+import { Temporal } from "@js-temporal/polyfill";
 import "./polyfills";
 import express from "express";
 
@@ -19,14 +20,21 @@ function createApp(database) {
     const type = req.query.type;
     const baseCost = database.findBasePriceByType(type).cost;
     const date = parseDate(req.query.date);
+    const temporalDate = parseTemporalDate(req.query.date);
     const cost = calculateCost(age, type, date, baseCost);
-    // console.log({ date, age, cost });
+    console.log({ date, age, cost, temporalDate });
     res.json({ cost });
   });
 
   function parseDate(dateString) {
     if (dateString) {
       return new Date(dateString);
+    }
+  }
+  function parseTemporalDate(dateString) {
+    if (dateString) {
+      // console.log({ Temporal: Temporal.PlainDate.from(dateString).toString() });
+      return Temporal.PlainDate.from(dateString);
     }
   }
 
@@ -65,35 +73,29 @@ function createApp(database) {
     if (age > 64) {
       return Math.ceil(baseCost * 0.75 * (1 - reduction / 100));
     }
-    // console.log({ age, date, r: Math.ceil(baseCost * (1 - reduction / 100)) });
+
     return Math.ceil(baseCost * (1 - reduction / 100));
   }
 
   function calculateReduction(date) {
     let reduction = 0;
     if (date && isMonday(date) && !isHoliday(date)) {
-      // console.log("entra");
       reduction = 35;
     }
     return reduction;
   }
 
   function isMonday(date) {
-    const isMonday = date.getUTCDay() == 1;
-    // console.log({ isMonday });
+    const isMonday = date.dayOfWeek == 1;
+    console.log({ isMonday });
     return isMonday;
   }
 
   function isHoliday(date) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
-      let holiday = new Date(row.holiday);
-      if (
-        date &&
-        date.getFullYear() === holiday.getFullYear() &&
-        date.getMonth() === holiday.getMonth() &&
-        date.getDate() === holiday.getDate()
-      ) {
+      let holiday = Temporal.PlainDate.from(row.holiday);
+      if (date && date.year === holiday.year && date.month === holiday.month && date.day === holiday.day) {
         return true;
       }
     }
