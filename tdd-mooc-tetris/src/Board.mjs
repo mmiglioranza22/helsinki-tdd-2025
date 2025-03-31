@@ -23,6 +23,8 @@ export class Board {
       this._moveBoard();
       this._joinAndNormalize();
       this.fallingPiece = true;
+    } else {
+      this.fallingPiece = false;
     }
   }
 
