@@ -18,10 +18,11 @@ export class Board {
   }
 
   tick() {
-    // split in 3 portions, move all to the right each tick, set left side empty
-    this._splitAndNormalize();
-    this._moveBoard();
-    this._joinAndNormalize();
+    if (this.shape.indexOf("X") <= 5) {
+      this._splitAndNormalize();
+      this._moveBoard();
+      this._joinAndNormalize();
+    }
   }
 
   toString() {
