@@ -27,10 +27,14 @@ export class Board {
   }
 
   _joinAndNormalize() {
-    this.shape = this.shape.join("\n") + "\n";
+    if (Array.isArray(this.shape)) {
+      this.shape = this.shape.join("\n") + "\n";
+    }
   }
   _splitAndNormalize() {
-    this.shape = this.shape.split("\n");
-    this.shape.pop();
+    if (!Array.isArray(this.shape)) {
+      this.shape = this.shape.split("\n");
+      this.shape.pop();
+    }
   }
 }
