@@ -8,12 +8,12 @@ export class Board {
     this.height = height;
     this.shape = "...\n...\n...\n";
   }
-  drop() {
+  drop(tetrominoe) {
     if (this.shape.indexOf("X") > -1) {
       throw "already falling";
     }
     this._splitAndNormalize();
-    this.shape[0] = [".X."];
+    this.shape[0] = ["." + tetrominoe + "."];
     this._joinAndNormalize();
   }
 
