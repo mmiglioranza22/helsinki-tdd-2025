@@ -28,6 +28,10 @@ export class Board {
     return this.shape;
   }
 
+  hasFalling() {
+    return true;
+  }
+
   _joinAndNormalize() {
     if (Array.isArray(this.shape)) {
       this.shape = this.shape.join("\n") + "\n";
