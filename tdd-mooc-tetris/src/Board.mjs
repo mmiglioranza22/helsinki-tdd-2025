@@ -22,6 +22,7 @@ export class Board {
       this._splitAndNormalize();
       this._moveBoard();
       this._joinAndNormalize();
+      this.fallingPiece = true;
     }
   }
 
@@ -30,7 +31,7 @@ export class Board {
   }
 
   hasFalling() {
-    return true;
+    return this.fallingPiece;
   }
 
   _joinAndNormalize() {
