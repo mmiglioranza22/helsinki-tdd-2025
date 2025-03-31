@@ -19,7 +19,9 @@ export class Board {
 
   tick() {
     // split in 3 portions, move all to the right each tick, set left side empty
-    this.shape = "...\n.X.\n...\n";
+    this._splitAndNormalize();
+    this._moveBoard();
+    this._joinAndNormalize();
   }
 
   toString() {
@@ -36,5 +38,9 @@ export class Board {
       this.shape = this.shape.split("\n");
       this.shape.pop();
     }
+  }
+  _moveBoard() {
+    this.shape.pop();
+    this.shape.unshift("...");
   }
 }
