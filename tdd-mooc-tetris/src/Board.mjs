@@ -43,4 +43,8 @@ export class Board {
     this.shape.pop();
     this.shape.unshift("...");
   }
+
+  _print() {
+    console.log(this.toString());
+  }
 }
