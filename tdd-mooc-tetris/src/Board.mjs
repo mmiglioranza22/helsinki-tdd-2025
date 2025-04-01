@@ -9,7 +9,9 @@ export class Board {
     this.shape = "...\n...\n...\n";
   }
   drop(tetrominoe) {
-    if (this.shape.indexOf("X") > -1) {
+    if (this.shape.indexOf("X") == 1) {
+      console.log("error");
+      this._print();
       throw "already falling";
     }
     this._splitAndNormalize();
@@ -18,9 +20,16 @@ export class Board {
   }
 
   tick() {
+    // I am in the last row
+    if (this.shape.indexOf("X") > 5) {
+      this._splitAndNormalize();
+      this._moveMiddleRow();
+      this._joinAndNormalize();
+      this.fallingPiece = true;
+    }
     if (this.shape.indexOf("X") <= 5) {
       this._splitAndNormalize();
-      this._moveBoard();
+      this._moveLastRow();
       this._joinAndNormalize();
       this.fallingPiece = true;
     } else {
@@ -47,8 +56,14 @@ export class Board {
       this.shape.pop();
     }
   }
-  _moveBoard() {
-    this.shape.pop();
+  _moveLastRow() {
+    this.shape.pop(); // string
+    this.shape.unshift("...");
+  }
+  _moveMiddleRow() {
+    const firstRow = this.shape[0];
+    this.shape[1] = firstRow;
+    this.shape.shift();
     this.shape.unshift("...");
   }
 
