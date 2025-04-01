@@ -83,40 +83,40 @@ describe("Falling blocks", () => {
     });
   });
 
-  // describe("When a block lands on another block", () => {
-  //   beforeEach(() => {
-  //     board.drop("X");
-  //     // board._print();
-  //     board.tick();
-  //     // board._print();
-  //     board.tick();
-  //     // board._print();
-  //     board.tick();
-  //     // board._print();
-  //     board.drop("Y");
-  //     // board._print();
-  //     board.tick();
-  //     // board._print();
-  //   });
+  describe("When a block lands on another block", () => {
+    beforeEach(() => {
+      board.drop("X");
+      // board._print();
+      board.tick();
+      // board._print();
+      board.tick();
+      // board._print();
+      board.tick();
+      // board._print();
+      board.drop("Y");
+      // board._print();
+      board.tick();
+      // board._print();
+    });
 
-  //   test("it is still moving on the row above the other block", () => {
-  //     expect(board.toString()).to.equalShape(
-  //       `...
-  //        .Y.
-  //        .X.`
-  //     );
-  //     expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
-  //   });
+    test("it is still moving on the row above the other block", () => {
+      expect(board.toString()).to.equalShape(
+        `...
+         .Y.
+         .X.`
+      );
+      expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
+    });
 
-  //   test.skip("it stops when it hits the other block", () => {
-  //     board.tick();
+    test.skip("it stops when it hits the other block", () => {
+      board.tick();
 
-  //     expect(board.toString()).to.equalShape(
-  //       `...
-  //        .Y.
-  //        .X.`
-  //     );
-  //     expect(board.hasFalling(), "the block should stop moving").to.be.false;
-  //   });
-  // });
+      expect(board.toString()).to.equalShape(
+        `...
+         .Y.
+         .X.`
+      );
+      expect(board.hasFalling(), "the block should stop moving").to.be.false;
+    });
+  });
 });
