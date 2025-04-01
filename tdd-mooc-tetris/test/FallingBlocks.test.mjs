@@ -71,8 +71,6 @@ describe("Falling blocks", () => {
 
     test("it stops when it hits the bottom", () => {
       board.tick();
-      board._print();
-      board._printPrevious();
 
       expect(board.toString()).to.equalShape(
         `...
@@ -86,17 +84,11 @@ describe("Falling blocks", () => {
   describe("When a block lands on another block", () => {
     beforeEach(() => {
       board.drop("X");
-      // board._print();
       board.tick();
-      // board._print();
       board.tick();
-      // board._print();
       board.tick();
-      // board._print();
       board.drop("Y");
-      // board._print();
       board.tick();
-      // board._print();
     });
 
     test("it is still moving on the row above the other block", () => {
@@ -108,8 +100,10 @@ describe("Falling blocks", () => {
       expect(board.hasFalling(), "the player should still be able to move the block").to.be.true;
     });
 
-    test.skip("it stops when it hits the other block", () => {
+    test("it stops when it hits the other block", () => {
       board.tick();
+      board._print();
+      board._printPrevious();
 
       expect(board.toString()).to.equalShape(
         `...

@@ -22,22 +22,28 @@ export class Board {
   }
 
   tick() {
-    this.previousShape = this.shape;
     // check if there was something below previously
+    this.previousShape = this.shape;
 
-    // last row has something
-    if (this.shape.indexOf("X") > 5) {
+    if (this.shape.indexOf("Y") === 5) {
+      this.canMove();
+      return;
+    }
+    if (this.shape.indexOf("X") > 6) {
+      // last row has something
       this._splitAndNormalize();
       this._moveMiddleRow();
       this._joinAndNormalize();
       this.canMove();
+      return;
     }
     // last row is empty
-    if (this.shape.indexOf("X") <= 5) {
+    if (this.shape.indexOf("X") <= 6) {
       this._splitAndNormalize();
       this._popLast();
       this._joinAndNormalize();
       this.canMove();
+      return;
     }
   }
 
