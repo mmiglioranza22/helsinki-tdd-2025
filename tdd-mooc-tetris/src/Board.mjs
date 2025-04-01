@@ -2,36 +2,47 @@ export class Board {
   width;
   height;
   shape;
+  previousShape;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
     this.shape = "...\n...\n...\n";
+    this.previousShape = undefined;
   }
+
   drop(tetrominoe) {
     if (this.shape.indexOf("X") == 1) {
       throw "already falling";
     }
+    this.previousShape = this.shape;
     this._splitAndNormalize();
     this.shape[0] = ["." + tetrominoe + "."];
     this._joinAndNormalize();
   }
 
   tick() {
+    this.previousShape = this.shape;
+    // check if there was something below previously
+
     // last row has something
     if (this.shape.indexOf("X") > 5) {
       this._splitAndNormalize();
       this._moveMiddleRow();
       this._joinAndNormalize();
-      this.fallingPiece = false;
+      this.canMove();
     }
     // last row is empty
     if (this.shape.indexOf("X") <= 5) {
       this._splitAndNormalize();
       this._popLast();
       this._joinAndNormalize();
-      this.fallingPiece = true;
+      this.canMove();
     }
+  }
+
+  canMove() {
+    this.fallingPiece = this.shape !== this.previousShape;
   }
 
   toString() {
@@ -65,6 +76,13 @@ export class Board {
   }
 
   _print() {
+    console.log("-current-");
     console.log(this.toString());
+    console.log("---------");
+  }
+  _printPrevious() {
+    console.log("-previous-");
+    console.log(this.previousShape);
+    console.log("----------");
   }
 }
