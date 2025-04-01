@@ -50,14 +50,8 @@ describe("Falling blocks", () => {
   describe("When a block reaches the bottom", () => {
     beforeEach(() => {
       board.drop("X");
-      // board._print();
-      // board._printPrevious();
       board.tick();
-      // board._print();
-      // board._printPrevious();
       board.tick();
-      // board._print();
-      // board._printPrevious();
     });
 
     test("it is still moving on the last row", () => {
