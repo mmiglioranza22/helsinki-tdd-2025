@@ -102,8 +102,6 @@ describe("Falling blocks", () => {
 
     test("it stops when it hits the other block", () => {
       board.tick();
-      board._print();
-      board._printPrevious();
 
       expect(board.toString()).to.equalShape(
         `...

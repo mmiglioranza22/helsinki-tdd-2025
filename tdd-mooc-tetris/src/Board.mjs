@@ -25,6 +25,7 @@ export class Board {
     // check if there was something below previously
     this.previousShape = this.shape;
 
+    // TODO refactor to check any char in any relevant position (last and middle row)
     if (this.shape.indexOf("Y") === 5) {
       this.canMove();
       return;
@@ -47,6 +48,8 @@ export class Board {
     }
   }
 
+  // if the previous state is equal to the current state, then the piece dropped should no longer move
+  // if they differ, the piece is still falling OR is the first time reaching its limit and should not move ONLY in the next tick
   canMove() {
     this.fallingPiece = this.shape !== this.previousShape;
   }
@@ -70,10 +73,14 @@ export class Board {
       this.shape.pop();
     }
   }
+
+  // when piece just dropped and there is no piece in the bottom row
   _popLast() {
     this.shape.pop(); // string
     this.shape.unshift("...");
   }
+
+  // when a piece just dropped and the bottom row has already been filled
   _moveMiddleRow() {
     const firstRow = this.shape[0];
     this.shape[1] = firstRow;
@@ -86,6 +93,7 @@ export class Board {
     console.log(this.toString());
     console.log("---------");
   }
+
   _printPrevious() {
     console.log("-previous-");
     console.log(this.previousShape);
