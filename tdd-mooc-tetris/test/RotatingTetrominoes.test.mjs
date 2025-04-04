@@ -6,12 +6,14 @@ function distinctOrientations(shape) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
+
   for (let i = 0; i < 10; i++) {
-    distinct.add(goingRight.toString());
-    goingRight = goingRight.rotateRight();
-    distinct.add(goingLeft.toString());
-    goingLeft = goingLeft.rotateLeft();
+    distinct.add(goingRight.rotateRight());
+    // goingRight = goingRight.rotateRight();
+    distinct.add(goingLeft.rotateLeft());
+    // goingLeft = goingLeft.rotateLeft();
   }
+  console.log(distinct);
   return distinct;
 }
 
@@ -42,7 +44,7 @@ describe("The T shape", () => {
     );
   });
 
-  test.skip("has 4 distinct orientations", () => {
+  test("has 4 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(4);
   });
 });
