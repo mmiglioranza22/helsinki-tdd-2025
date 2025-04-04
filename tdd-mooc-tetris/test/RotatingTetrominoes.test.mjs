@@ -49,7 +49,6 @@ describe("The T shape", () => {
   });
 });
 
-/*
 describe("The I shape", () => {
   const shape = Tetromino.I_SHAPE;
 
@@ -87,7 +86,6 @@ describe("The I shape", () => {
     expect(distinctOrientations(shape).size).to.equal(2);
   });
 });
-*/
 
 /*
 describe("The O shape", () => {
