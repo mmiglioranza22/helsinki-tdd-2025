@@ -58,6 +58,12 @@ class Shape {
     for (let i = 0; i < final.length; i++) {
       final[i] = final[i].join("");
     }
+    console.log(final);
+    // special case for I_SHAPE
+    if (final.length === 5 && final[0].split("").every((el) => el === ".")) {
+      const first = final.shift();
+      final.push(first);
+    }
     final = final.join("\n") + "\n";
 
     this.shape = final;
